@@ -30,11 +30,15 @@ function myFunction() {
 💡 NOTE: you may use a for loop for this function if you wish 
 */
 
-function summation() {
-
+function summation(number) {
+  let sum = 0;
+for (let i = 1; i <= number; i ++){
+  sum += i;
+}
+return sum
 }
  
-
+console.log('Task 2 Request 1', summation(4));
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -62,9 +66,10 @@ const zooAnimals = [
 
  
 
-  function animalNames(){
-
+  function animalNames(array){
+    
   }
+  
   
  
   
@@ -79,9 +84,13 @@ const zooAnimals = [
   💡 NOTE: Do some research for other methods that can help help you
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowerCaseNames(arr){
+    const lowerCase = arr.map(name => {
+      return name.toLowerCase();
+    });
   }
+  
+  console.log('Task 2 Request 2', zooAnimals);
   
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
@@ -97,7 +106,7 @@ const zooAnimals = [
     return newArray;
   }
   
-  console.log('Topic 2 Request 3', lowPopulationAnimals(zooAnimals))
+  console.log('Task 2 Request 3', lowPopulationAnimals(zooAnimals))
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
   The zoo needs to know their total animal population across the United States. 
@@ -114,7 +123,7 @@ const zooAnimals = [
   }, 0);
   return animalPop;
   }
-  console.log('Task 4 Request 4', USApop(zooAnimals));
+  console.log('Task 2 Request 4', USApop(zooAnimals));
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
@@ -125,8 +134,8 @@ const zooAnimals = [
     💡 NOTE: The tests for 'consume' will pass if it is created correctly and also after you correctly complete the functions 'add' and 'greeting' below in Step 2.
   */
 
-  function consume(/*Your Code Here */){
-    /*Your Code Here */
+  function consume(a,b,cb){
+    return cb(a,b)
   }
  
   
@@ -137,20 +146,23 @@ const zooAnimals = [
  2. Return the sum of those numbers
  */
 
-function add(/*Your Code Here */){
-    /*Your Code Here*/
+function add(num1,num2){
+   let sum = (num1 + num2)
+   return sum;
   }
-
+console.log('task 3 Request 1', add(1,2));
 
 /* Use multiply to do the following:
 1. Receive two numbers as an argument that are passed in from its first and second parameters
 2. Return the product of those numbers
 */
 
-function multiply(/*Your Code Here */){
-   /*Your Code Here */
+function multiply(num1,num2){
+   let product = (num1 * num2);
+   return product
   }
 
+  console.log('Task 3 Request 2',multiply(2,2));
 
  /* Use greeting to do the following:
 1. Receive two strings (a first name and last name) as an argument that are passed in from its first and second parameters
@@ -158,16 +170,17 @@ function multiply(/*Your Code Here */){
 💡 NOTE: The string returned must match the format above or the test will not pass!
 */
 
-function greeting(/*Your Code Here */){
-   return /*Your Code Here */
+function greeting(firstName,lastName){
+   return `Hello ${firstName} ${lastName}, nice to meet you!`
   }
   
+  console.log('Task 3 Request 5',greeting('Matt', 'Wallace'))
   
 // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-// console.log(consume(2, 2, add)); // 4
-// console.log(consume(10, 16, multiply)); // 160
-// console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
+console.log(consume(2, 2, add)); // 4
+console.log(consume(10, 16, multiply)); // 160
+console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
 
 
 
@@ -184,16 +197,21 @@ function greeting(/*Your Code Here */){
 - Instances of CuboidMaker should initialize `length`, `width` and `height` properties
 */
 
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
-}
-
+function CuboidMaker(obj){
+  this.length = obj.length;
+  this.width = obj.width;
+  this.height = obj.height;
+  }
+  
 
 /* 🐴🐴🐴 Step 2: Volume Method 🐴🐴🐴
   Create a method called volume using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   💡 NOTE: Formula for cuboid volume: length * width * height   
 */
 
+CuboidMaker.prototype.volume = function(){
+ return this.length * this.width * this.height
+};
 
 
 
@@ -202,7 +220,9 @@ function CuboidMaker(/*Your Code Here */){
   💡 NOTE: Formula for cuboid surface area: 2 * (length * width + length * height + width * height)  
 */
 
-
+CuboidMaker.prototype.surfaceArea = function(){
+  return 2* (this.length * this.width + this.length * this.height + this.width * this.height)
+};
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker (not auto graded)🐴🐴🐴
@@ -210,28 +230,44 @@ function CuboidMaker(/*Your Code Here */){
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
 
-
+const cuboid = new CuboidMaker({
+  length: 4,
+  width: 5,
+  height: 5
+})
 
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-// console.log(cuboid.volume()); // 100
-// console.log(cuboid.surfaceArea()); // 130
+console.log(cuboid.volume()); // 100
+console.log(cuboid.surfaceArea()); // 130
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //Using CuboidMakerTwo, take your prototypes from above and refactor into class syntax. Then, create an object called cuboidTwo that uses the new keyword to use our CuboidMakerTwo class.
  
-class CuboidMakerTwo{
 
+class CuboidMakerTwo{
+  constructor(length,width,height){
+    this.length = length;
+    this.width = width;
+    this.height = height;
+  }
+  volume(){
+    return this.length * this.width * this.height;
+  }
+  surfaceArea(){
+    return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+  }
 }
 
+const cuboidTwo = new CuboidMakerTwo(4,5,5);
 
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+console.log(cuboidTwo.volume()); // 100
+console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
