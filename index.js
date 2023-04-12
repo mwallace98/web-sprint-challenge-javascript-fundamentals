@@ -38,7 +38,7 @@ for (let i = 1; i <= number; i ++){
 return sum
 }
  
-console.log('Task 2 Request 1', summation(4));
+console.log('Task 2', summation(4));
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -67,10 +67,14 @@ const zooAnimals = [
  
 
   function animalNames(array){
-    
+    let displayNames = [];
+    array.forEach(function(element){
+     displayNames.push(`name: ${element.animal_name}, scientific: ${element.scientific_name}`) 
+    });
+    return displayNames;
   }
   
-  
+  console.log('task 2 Request 1',animalNames(zooAnimals));
  
   
 
@@ -84,10 +88,11 @@ const zooAnimals = [
   💡 NOTE: Do some research for other methods that can help help you
   */
 
-  function lowerCaseNames(arr){
-    const lowerCase = arr.map(name => {
-      return name.toLowerCase();
+  function lowerCaseNames(array){
+    const lowerCase = array.map(animal => {
+      return animal.animal_name.toLowerCase();
     });
+    return lowerCase;
   }
   
   console.log('Task 2 Request 2', zooAnimals);
@@ -248,10 +253,10 @@ console.log(cuboid.surfaceArea()); // 130
  
 
 class CuboidMakerTwo{
-  constructor(length,width,height){
-    this.length = length;
-    this.width = width;
-    this.height = height;
+  constructor(obj){
+    this.length = obj.length;
+    this.width = obj.width;
+    this.height = obj.height;
   }
   volume(){
     return this.length * this.width * this.height;
@@ -262,7 +267,7 @@ class CuboidMakerTwo{
 }
 
 const cuboidTwo = new CuboidMakerTwo(4,5,5);
-
+console.log(cuboidTwo);
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
